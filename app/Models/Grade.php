@@ -10,14 +10,14 @@ class Grade extends Model
     use HasFactory;
 
     protected $fillable = ['student_id', 'subject_id', 'grade'];
-
-    public function student()
-    {
+    protected $casts = [
+        'grade' => 'float',
+    ];
+    public function student() {
         return $this->belongsTo(Student::class);
     }
 
-    public function subject()
-    {
+    public function subject() {
         return $this->belongsTo(Subject::class);
     }
 }

@@ -14,7 +14,14 @@ class AdminController extends Controller
         $students = Student::paginate(10); // Use pagination
         $subjects = Subject::paginate(10);
         $grades = Grade::paginate(10);
+        $students = Student::with('user', 'enrollments.subject')->get();
 
+        // Calculate total units per student
+        $students = Student::with('user', 'enrollments.subject')->get();
+
+        foreach ($students as $student) {
+            $student->totalUnits = $student->enrollments->sum(fn($enrollment) => $enrollment->subject->units ?? 0);
+        }
         return view('admin.index', compact('students', 'subjects', 'grades'));
     }
 }

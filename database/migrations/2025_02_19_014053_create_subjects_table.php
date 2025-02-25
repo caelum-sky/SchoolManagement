@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name')->unique(); // Ensures no duplicate subject names
             $table->string('code')->unique()->nullable();
             $table->string('description')->nullable();
-            $table->integer('grade')->default(0); // Ensuring a default value
+            $table->integer('grade')->default(0);
+            $table->integer('unit')->nullable(); // Ensuring a default value
             $table->timestamps();
         });
     }

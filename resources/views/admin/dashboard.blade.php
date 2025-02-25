@@ -446,6 +446,42 @@
         </div>
 
 
+        <script>
+    $(document).ready(function() {
+        $('#addStudentForm').submit(function(event) {
+            event.preventDefault(); 
+            $.ajax({
+                url: "{{ route('students.store') }}",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function(response) {
+                    if(response.success) {
+                        $('#createStudentModal').modal('hide');
+                        let student = response.student;
+                        $('#studentTable tbody').append(`
+                            <tr>
+                                <td>${student.name}</td>
+                                <td>${student.email}</td>
+                                <td>${student.phone}</td>
+                                <td>${student.address}</td>
+                                <td>${student.gender}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#EditStudentModal${student.id}">Edit</button>
+                                    <form action="/students/${student.id}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        `);
+                        $('#addStudentForm')[0].reset();
+                    }
+                }
+            });
+        });
+    });
+</script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

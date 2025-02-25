@@ -24,7 +24,8 @@ class SubjectController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'code' => 'required|string|unique:subjects,code'
+            'code' => 'required|string|unique:subjects,code',
+            'unit' => '|numeric|min:0|max:10'
         ]);
     
         Subject::create($request->all());

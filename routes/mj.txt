@@ -1,0 +1,46 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SubjectController;
+
+// Public Route (Welcome Page)
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Admin-only Routes
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::resource('students', StudentController::class);
+    Route::resource('grades', GradeController::class)->except(['show', 'create', 'edit']);
+    Route::resource('subjects', SubjectController::class)->except(['show', 'create', 'edit']);
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+
+// Authenticated Users (Both Admin & Regular Users)
+Route::middleware(['auth', 'user'])->group(function () {
+    Route::get('/user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::middleware(['auth', 'user'])->group(function () {
+        Route::get('/user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    });
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware('verified')->name('dashboard');
+
+    // Profile Management
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Authentication Routes
+require __DIR__.'/auth.php';

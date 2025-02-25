@@ -13,20 +13,24 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('address')->nullable();
-            $table->string('gender')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ✅ Foreign key to users table
+            $table->string('phone')->nullable();
+            $table->string('year')->nullable();
+            $table->text('address')->nullable();
+            $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
             $table->timestamps();
         });
+        
     }
+    
+    
     
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('students');
     }
+    
 };

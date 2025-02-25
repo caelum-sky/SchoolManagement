@@ -9,7 +9,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','code'];
+    protected $fillable = ['name','description','code','unit'];
 
     public function grades()
     {
@@ -18,7 +18,7 @@ class Subject extends Model
     public function students()
     {
         return $this->belongsToMany(Student::class, 'student_subject')
-                    ->withPivot('status')
+                    ->withPivot('status', 'grade')
                     ->withTimestamps();
     }
     
