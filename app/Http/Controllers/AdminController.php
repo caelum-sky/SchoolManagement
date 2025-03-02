@@ -11,8 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $students = Student::paginate(10); // Use pagination
-        $subjects = Subject::paginate(10);
+        $students = Student::with('user')->get(); // Fetch students with related user data
+        $subjects = Subject::all();
         $grades = Grade::paginate(10);
         $students = Student::with('user', 'enrollments.subject')->get();
 
@@ -24,5 +24,14 @@ class AdminController extends Controller
         }
         return view('admin.index', compact('students', 'subjects', 'grades'));
     }
+    public function showSubjects()
+    {
+        $subjects = Subject::all();  // Paginate to avoid large data loads
+        $students = Student::with('user');
+        $grades = Grade::all(); // Ensure $grades is available
+
+        return view('admin.subjects', compact('subjects', 'students', 'grades'));
+    }
+
 }
 

@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 // Admin-Only Routes
 Route::middleware('auth')->group(function () {
+    Route::get('/admin/subjects', [SubjectController::class, 'index'])->name('admin.subjects');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/subjects', [AdminController::class, 'showSubjects'])->name('admin.subjects');
+
+    
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/storage/index', [AdminController::class, 'students'])->name('storage.index');

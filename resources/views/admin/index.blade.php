@@ -33,11 +33,16 @@
                     <!-- Select Student -->
                     <div class="mb-3">
                         <label>Student:</label>
-                        <select class="form-control" name="student_id" required>
-                            @foreach($students as $student)
-                                <option value="{{ $student->id }}">{{ $student->user->name }}</option>
-                            @endforeach
-                        </select>
+                        @if(isset($students) && count($students) > 0)
+                            <select class="form-control" name="student_id" required>
+                                @foreach($students as $student)
+                                    <option value="{{ $student->id }}">{{ $student->user->name }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <p>No students available</p>
+                        @endif
+
                     </div>
 
                     <!-- Select Subject -->
