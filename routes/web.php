@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/subjects', [AdminController::class, 'showSubjects'])->name('admin.subjects');
     Route::get('/admin/enroll', [EnrollmentController::class, 'index'])->name('admin.enroll');
+    Route::get('/admin/grades', [GradeController::class, 'index'])->name('admin.grades');
 
     
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

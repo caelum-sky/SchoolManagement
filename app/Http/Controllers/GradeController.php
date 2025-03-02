@@ -19,14 +19,13 @@ class GradeController extends Controller
 
     return response()->json($student->enrollments->pluck('subject'));
 }
+public function index() {
+    $students = Student::with('user', 'subjects')->get();
+    $subjects = Subject::all();
+    $grades = Grade::with('student.user', 'subject')->get();
+    return view('admin.grades', compact('students', 'subjects', 'grades'));
+}
 
-    public function index() {
-        $students = Student::with('user', 'subjects')->get();
-        $students = Student::with('subjects')->get(); 
-        $subjects = Subject::all();
-        $grades = Grade::with('student.user', 'subject')->get();
-        return view('students.index', compact('students', 'subjects', 'grades'));
-    }
     
     public function store(Request $request)
     {
@@ -108,6 +107,7 @@ class GradeController extends Controller
     public function showStudentGrades(Student $student)
     {
         $grades = Grade::where('student_id', $student->id)->get();
-        return view('grades.index', compact('grades', 'student'));
+        return view('admin.grades', compact('grades', 'student'));
     }
+    
 }

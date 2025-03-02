@@ -58,16 +58,20 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{route('admin.dashboard')  }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                <div class="sb-nav-link-icon"><i class='fa-solid fa-school'></i></div>
+                               Students
                             </a>
                             <a class="nav-link" href="{{route('admin.subjects')  }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class='fas fa-book-open'></i></div>
                                Subject
                             </a>
                             <a class="nav-link" href="{{route('admin.enroll')  }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class='fas fa-book-reader'></i></div>
                                Enrollments
+                            </a>
+                            <a class="nav-link" href="{{route('admin.grades')  }}">
+                                <div class="sb-nav-link-icon"><i class='fas fa-atom'></i></div>
+                               Grades
                             </a>
                            
   
@@ -85,6 +89,8 @@
 
 @yield('views')
 @yield('subject')
+@yield('enroll')
+@yield('grade')
 
 
 
@@ -106,6 +112,7 @@
         </div>
 
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

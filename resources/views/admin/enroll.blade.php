@@ -1,7 +1,7 @@
 
 @extends('layouts.dash')
 
-@section('views')
+@section('enroll')
 <div class="container">
     <h3 class="mb-4">Student Management</h3>
 
