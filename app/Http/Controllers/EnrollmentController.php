@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
 {
+    public function index()
+    {
+        $grades = Grade::all();
+        $enrollments = Enrollment::all();
+        $students = Student::with('user')->get(); // Fetch students with related user data
+        $subjects = Subject::all(); // Fetch all subjects from the database
+        return view('admin.enroll', compact('subjects', 'students', 'grades')); // Make sure this view file exists
+    }
     public function store(Request $request)
     {
         // Validate input
