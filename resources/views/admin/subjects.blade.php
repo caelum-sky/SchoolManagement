@@ -1,10 +1,10 @@
 @extends('layouts.dash')
-
+@section('title', 'Subjects')
 @section('subject')
 <div class="container">
-    <h3 class="mb-4">Student Management</h3>
 
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#Subject">
+
+    <button style="margin: 10px"  type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#Subject">
         Add Subject
     </button>
 

@@ -1,13 +1,13 @@
 
 @extends('layouts.dash')
-
+@section('title', 'Grades')
 @section('grade')
 <div class="container">
-    <h3 class="mb-4">Student Management</h3>
+
 
     <!-- Add Student Modal Trigger -->
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGradeModal">
+    <button style="margin: 10px"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGradeModal">
     Add Grade
     </button>
 

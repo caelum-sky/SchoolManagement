@@ -1,12 +1,12 @@
 
     @extends('layouts.dash')
-
+    @section('title', 'Student Management')
     @section('views')
     <div class="container">
-        <h3 class="mb-4">Student Management</h3>
+      
 
         <!-- Add Student Modal Trigger -->
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createStudentModal">
+        <button style="margin: 10px"  type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createStudentModal">
             Add Student
         </button>
 

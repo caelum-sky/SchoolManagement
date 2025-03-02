@@ -1,12 +1,12 @@
 
 @extends('layouts.dash')
+@section('title', 'Enrollments')
 
 @section('enroll')
 <div class="container">
-    <h3 class="mb-4">Student Management</h3>
 
     <!-- Add Student Modal Trigger -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#enrollStudentModal">
+    <button style="margin: 10px" type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#enrollStudentModal">
     Enroll Student in Subject
     </button>
 
